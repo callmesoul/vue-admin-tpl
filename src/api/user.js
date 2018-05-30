@@ -1,7 +1,10 @@
 import ax from './config'
 
 export default {
-  get:function (params) {
-    return ax.get("/read/getReadStars.do",{params:params});
+  login:function (params) {
+    return ax.post("/loginAdmin",params);
   },
+  getInfo:function () {
+    return ax.get(`/user/getInfo`);
+  }
 }

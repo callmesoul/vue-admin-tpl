@@ -30,6 +30,7 @@ const state = {
 
 const mutations = {
     [LOGIN_SUCCESS](state, action) {
+      localStorage.setItem('token',action.token);
         state.token = action.token;
     },
     [USERINFO_SUCCESS](state, action) {

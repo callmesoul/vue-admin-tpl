@@ -99,9 +99,9 @@ router.beforeEach(async (to, from, next) => { //to:目标，from：来源
         next();
       }else {
         //获取用户信息
-        let res=await api.user.getUserInfo();
+        let res=await api.user.getInfo();
         console.log("getUserinfo:",res);
-        store.commit("USERINFO_SUCCESS",{user:res.data});
+        store.commit("USERINFO_SUCCESS",{user:res});
         console.log("store.state.auth:",store.state.auth);
         next();
       }

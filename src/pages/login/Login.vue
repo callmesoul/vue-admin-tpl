@@ -9,7 +9,7 @@
           <el-input v-model="ruleForm.username" placeholder="请填写用户名"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input v-model="ruleForm.password" placeholder="请填写密码"></el-input>
+          <el-input v-model="ruleForm.password" type="password" placeholder="请填写密码"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
@@ -41,9 +41,13 @@
     },
     methods:{
       submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
+        this.$refs[formName].validate(async (valid) => {
           if (valid) {
-            alert('submit!');
+            let res=await this.api.user.login(this.ruleForm);
+            if(res){
+              this.$store.commit('LOGIN_SUCCESS',{token:res.token});
+              this.$router.push('/index');
+            }
           } else {
             console.log('error submit!!');
             return false;
