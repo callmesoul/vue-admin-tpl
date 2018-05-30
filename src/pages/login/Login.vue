@@ -53,6 +53,9 @@
       resetForm(formName) {
         this.$refs[formName].resetFields();
       }
+    },
+    mounted(){
+      this.$store.commit('LOGOUT_USER');
     }
   }
 </script>

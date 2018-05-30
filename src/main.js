@@ -94,10 +94,11 @@ router.beforeEach(async (to, from, next) => { //to:目标，from：来源
   if(to.name=="login"){
     next();
   }else {
-    if(store.state.auth.sessionKey){
+    if(store.state.auth.token){
       if(store.state.auth.user){
         next();
       }else {
+        //获取用户信息
         let res=await api.user.getUserInfo();
         console.log("getUserinfo:",res);
         store.commit("USERINFO_SUCCESS",{user:res.data});
@@ -105,8 +106,8 @@ router.beforeEach(async (to, from, next) => { //to:目标，from：来源
         next();
       }
     }else{
-      // next({path:"/login"});
-      next();
+      next({path:"/login"});
+      // next();
     }
   }
 });

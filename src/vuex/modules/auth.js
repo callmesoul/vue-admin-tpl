@@ -19,24 +19,13 @@ import {
     DEDUCTION_INTEGRAL,
 } from '../types'
 
-import wx from 'weixin-js-sdk'
-import store from '../../vuex/store'
-import Vue from 'vue'
-import Api from "../../api/index"
+
 
 const state = {
-    token: localStorage.zsnicetoken || null,
+    token: localStorage.token || null,
     // token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEwLCJpYXQiOjE0OTQ2NzY0MTV9.2tBFmrjOWc7CAm9A1Y2rST-_3i3-3oe84QRBHdWhdXE",
     // token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIxMiwiaWF0IjoxNTAyNzY2NjM5fQ.KjlNddjYqYMVSxDLPUr5SscyEFwngUj2It8zI0ifE-8"
     user: null,
-    newsId: null,
-    nicesId: null,
-    videoId: null,
-    share_title: null,
-    share_desc: null,
-    nonceStr_str: null,
-    timestamp_str: null,
-    nices: {},
 };
 
 const mutations = {
@@ -50,7 +39,7 @@ const mutations = {
         state.user = null
     },
     [LOGOUT_USER](state, action) {
-        localStorage.removeItem("zsnicetoken");
+        localStorage.removeItem("token");
         state.user = null;
         state.token = null;
     },
